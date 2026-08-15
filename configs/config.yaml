@@ -1,0 +1,11 @@
+interface:
+  - eno1
+reload_interval: 10
+log_level: info
+reply_mac: auto
+logging:
+  output: journal
+  file: /var/log/arp-responder.log
+metrics:
+  enabled: false
+  listen: 127.0.0.1:9108

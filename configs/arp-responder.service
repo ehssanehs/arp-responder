@@ -1,0 +1,30 @@
+[Unit]
+Description=High-performance ARP responder
+Documentation=file:/usr/share/doc/arp-responder/README.md
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/arp-responder -config /etc/arp-responder/config.yaml -targets /etc/arp-responder/targets.conf
+Restart=on-failure
+RestartSec=2s
+User=arp-responder
+Group=arp-responder
+AmbientCapabilities=CAP_NET_RAW
+CapabilityBoundingSet=CAP_NET_RAW
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_PACKET AF_INET AF_INET6
+LockPersonality=true
+MemoryDenyWriteExecute=true
+SystemCallArchitectures=native
+
+[Install]
+WantedBy=multi-user.target
