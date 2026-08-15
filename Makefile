@@ -1,0 +1,13 @@
+.PHONY: build test bench vet fmt install
+build:
+	go build ./...
+test:
+	go test -race ./...
+bench:
+	go test -run '^$$' -bench . -benchmem ./...
+vet:
+	go vet ./...
+fmt:
+	gofmt -w $$(find cmd internal pkg -name '*.go')
+install:
+	./install.sh
